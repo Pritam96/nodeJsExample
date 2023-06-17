@@ -1,20 +1,18 @@
-const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
+
+// importing routes
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
 // creating express app
 const app = express();
 
-// adding middleware 1
-app.use((req, res, next) => {
-  console.log('In a middleware');
-  next(); // pass on to the next middleware
-});
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// adding middleware 2
-app.use((req, res, next) => {
-  console.log('In another middleware');
-  res.send('<h1>Hello from Express!</h1>');
-});
+// routing
+app.use(adminRoutes);
+app.use(shopRoutes);
 
 const PORT = 4000;
 
