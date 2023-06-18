@@ -5,11 +5,15 @@ const path = require('path');
 // importing routes
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+const rootDir = require('./util/path');
 
 // creating express app
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// static path added
+app.use(express.static(path.join(rootDir, 'public')));
 
 // routing
 app.use('/admin', adminRoutes);
@@ -17,8 +21,7 @@ app.use(shopRoutes);
 
 // response 404
 app.use((req, res, next) => {
-  //   res.status(404).send('<h1>Page Not Found...</h1>');
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+  res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 });
 
 const PORT = 4000;
