@@ -2,35 +2,17 @@ const express = require('express');
 
 const path = require('path');
 
-const rootDir = require('../util/path');
 const adminData = require('./admin');
+
+const productsController = require('../controllers/products');
+const supportController = require('../controllers/support');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  const products = adminData.products;
-  // rendering shop.ejs file
-  res.render('shop', {
-    prods: products,
-    pageTitle: 'Shop',
-    path: '/',
-  });
-});
+router.get('/', productsController.getProducts);
 
-router.get('/contactus', (req, res, next) => {
-  // rendering contact-us.ejs file
-  res.render('contact-us', {
-    pageTitle: 'Contact Us',
-    path: '/contactus',
-  });
-});
+router.get('/contactus', supportController.getContactUs);
 
-router.post('/success', (req, res, next) => {
-  // rendering contact-us.ejs file
-  res.render('contact-success', {
-    pageTitle: 'Contact Us',
-    path: '/contactus',
-  });
-});
+router.post('/success', supportController.getContactSuccess);
 
 module.exports = router;
