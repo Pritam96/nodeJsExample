@@ -1,20 +1,36 @@
 const express = require('express');
+
 const path = require('path');
 
 const rootDir = require('../util/path');
+const adminData = require('./admin');
 
 const router = express.Router();
 
-// get request
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'shop.html'));
+  const products = adminData.products;
+  // rendering shop.ejs file
+  res.render('shop', {
+    prods: products,
+    pageTitle: 'Shop',
+    path: '/',
+  });
 });
 
 router.get('/contactus', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'contact-us.html'));
+  // rendering contact-us.ejs file
+  res.render('contact-us', {
+    pageTitle: 'Contact Us',
+    path: '/contactus',
+  });
 });
 
 router.post('/success', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'contact-success.html'));
+  // rendering contact-us.ejs file
+  res.render('contact-success', {
+    pageTitle: 'Contact Us',
+    path: '/contactus',
+  });
 });
+
 module.exports = router;
