@@ -1,6 +1,6 @@
 // move all product related routes here
 
-const products = [];
+const Product = require('../models/product');
 
 exports.getAddProduct = (req, res, next) => {
   // rendering add-product.ejs file
@@ -12,15 +12,19 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   // adding data to the products
-  products.push({ title: req.body.title });
+  // products.push({ title: req.body.title });
+  const product = new Product(req.body.title);
+  product.save();
   res.redirect('/');
 };
 
 exports.getProducts = (req, res, next) => {
-  // rendering shop.ejs file
-  res.render('shop', {
-    prods: products,
-    pageTitle: 'Shop',
-    path: '/',
+  Product.fetchAll((products) => {
+    // rendering shop.ejs file
+    res.render('shop', {
+      prods: products,
+      pageTitle: 'Shop',
+      path: '/',
+    });
   });
 };
