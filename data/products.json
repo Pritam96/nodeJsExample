@@ -1,1 +1,29 @@
-[{"title":"Icecream"},{"title":"Helicopter"},{"title":"A Book"}]
+[
+  {
+    "id": "1687356532743",
+    "title": "Oitihasik Kahini Samagra",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfXPp2GAPGC4ZkQB4UwOw1yvkavP3JhAZBLg&usqp=CAU",
+    "description": "By Sharadindu Bandyopadhyay",
+    "price": "5"
+  },
+  {
+    "id": "1687356579284",
+    "title": "An Anthology Of The Best Ghost Stories From Bengal",
+    "imageUrl": "https://getmybooks.sgp1.cdn.digitaloceanspaces.com/images/33705846_1.jpg",
+    "description": "By Barnali Saha",
+    "price": "4.5"
+  },
+  {
+    "title": "Taranath Tantrik",
+    "imageUrl": "https://getmybooks.sgp1.cdn.digitaloceanspaces.com/images/33680575_1.jpg",
+    "description": "By Taradas Bandhopadhyay",
+    "price": "5",
+    "id": "1687359924612"
+  },
+  {
+    "title": "Pather Panchali",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOjZfBaBh8Tnut7gc9o_ZvhMJg7nBWnCflRwx8Fhmk-KtTdD4B",
+    "description": "By Bibhutibhushan Bandyopadhyay",
+    "price": "6"
+  }
+]

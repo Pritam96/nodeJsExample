@@ -28,7 +28,6 @@ app.use(errorController.get404);
 
 const PORT = 4000;
 
-// It calls const server = http.createServer(app) and server.listen(PORT) automatically
 app.listen(PORT, () => {
   console.log(`server is up and running on port ${PORT}`);
 });
