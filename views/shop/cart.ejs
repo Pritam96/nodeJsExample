@@ -1,6 +1,43 @@
 <%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/product.css">
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
-        <%- include('../includes/end.ejs') %>
+
+            <main>
+                <% if (cartProducts.length > 0) { %>
+                    <div class="grid">
+                        <% for (let cartProduct of cartProducts) { %>
+                            <article class="card product-item">
+                                <header class="card__header">
+                                    <h1 class="product__title">
+                                        <%= cartProduct.product.title %>
+                                    </h1>
+                                </header>
+                                <div class="card__image">
+                                    <img src="<%= cartProduct.product.imageUrl %>" alt="<%= cartProduct.product.title %>">
+                                </div>
+                                <div class="card__content">
+                                    <h2 class="product__price">$
+                                        <%= cartProduct.product.price %> x <%= cartProduct.qty %>
+                                    </h2>
+                                    <p class="product__description">
+                                        <%= cartProduct.product.description %>
+                                    </p>
+                                </div>
+                                <div class="card__actions">
+                                    <form action="/cart-delete-item" method="POST">
+                                        <input type="hidden" name="productId" value="<%= cartProduct.product.id %>" />
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+                                    
+                                </div>
+                            </article>
+                            <% } %>
+                    </div>
+                    <% } else { %>
+                        <h1>No Products In Cart</h1>
+                        <% } %>
+            </main>
+            <%- include('../includes/end.ejs') %>
