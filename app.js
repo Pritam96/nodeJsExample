@@ -18,6 +18,9 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const errorController = require('./controllers/error');
 
+// Importing connection pool
+const sequelize = require('./util/database');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,8 +29,10 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-const PORT = 4000;
-
-app.listen(PORT, () => {
-  console.log(`server is up and running on port ${PORT}`);
-});
+sequelize
+  .sync()
+  .then((result) => {
+    // console.log(result);
+    app.listen(4000);
+  })
+  .catch((err) => console.log(err));

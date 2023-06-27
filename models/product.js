@@ -1,33 +1,30 @@
-// importing the connection pool
-const db = require('../util/database');
+const Sequelize = require('sequelize');
 
-const Cart = require('./cart');
+const sequelize = require('../util/database');
 
-module.exports = class Product {
-  constructor(id, title, imageUrl, description, price) {
-    this.id = id;
-    this.title = title;
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.price = price;
-  }
+const Product = sequelize.define('product', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  price: {
+    type: Sequelize.DOUBLE,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+});
 
-  save() {
-    return db.execute(
-      'INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)',
-      [this.title, this.price, this.imageUrl, this.description]
-    );
-  }
-
-  static fetchAll() {
-    return db.execute('SELECT * FROM products');
-  }
-
-  static findById(id) {
-    return db.execute('SELECT * FROM products WHERE products.id = ?', [id]);
-  }
-
-  static deleteByID(id) {
-    return db.execute('DELETE FROM products WHERE products.id = ?', [id]);
-  }
-};
+module.exports = Product;
